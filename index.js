@@ -63,5 +63,5 @@ app.post('/manychat', function (req, res) {
 
 // Listen on an SSL enabled port
 var server = https.createServer(sslOptions, app).listen(PORT, function(){
-    console.log("Application listening on port " + port + " [SSL ENABLED].");
+    console.log("Application listening on port " + PORT + " [SSL ENABLED].");
 });
