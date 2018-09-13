@@ -1,20 +1,9 @@
 'use strict';
 var express = require('express');           // Express
 var bodyParser = require("body-parser");    // Parse request body
-var fs = require('fs');                     // Filestream
-var https = require('https');               // SSL Support
 
 // Application Port (Default = 8080)
 const PORT = process.env.PORT || 8080;
-
-// SSL Certificate Options
-const SSL_KEY= process.env.SSL_KEY || '';
-const SSL_CERT= process.env.SSL_CERT || '';
-
-var sslOptions = {
-    key: fs.readFileSync(SSL_KEY),
-    cert: fs.readFileSync(SSL_CERT)
-};
 
 // Initialize express with body parser middleware
 var app = express();
@@ -55,13 +44,12 @@ app.post('/manychat', function (req, res) {
         version: "v2",
         content: {
             messages:[
-                { type: "text", text: "Nice profile pic!"},
-                { type: "image", url: manychat.profile_pic }
+                { type: "text", text: "Hello world."},
             ]}
     });
 });
 
-// Listen on an SSL enabled port
-var server = https.createServer(sslOptions, app).listen(PORT, function(){
-    console.log("Application listening on port " + PORT + " [SSL ENABLED].");
+// Begin Application
+app.listen(PORT, function() {
+    console.log('Application listening on port ' + PORT);
 });
